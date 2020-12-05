@@ -1,2 +1,2 @@
-[`docker pull dimdm/openocd`](https://hub.docker.com/r/dimdm/openocd/)
+[`docker pull nishanthmenon/openocd`](https://hub.docker.com/r/nishanthmenon/openocd/)
 
