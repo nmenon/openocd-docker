@@ -6,6 +6,7 @@ WORKDIR /tmp
 COPY patches /tmp/patches
 
 RUN apk --no-cache add --virtual runtime-dependencies \
+      usbutils \
       libusb \
       libftdi1 &&\
     apk --no-cache add --virtual build-dependencies \
