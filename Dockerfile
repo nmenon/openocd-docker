@@ -3,7 +3,7 @@ FROM alpine:latest
 WORKDIR /tmp
 
 #RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing openocd
-COPY patches /tmp
+COPY patches /tmp/patches
 
 RUN apk --no-cache add --virtual runtime-dependencies \
       libusb \
