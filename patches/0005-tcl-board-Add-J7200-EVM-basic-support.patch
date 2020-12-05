@@ -1,7 +1,7 @@
-From 34df83478289ebac8783556a0130571f50e395c4 Mon Sep 17 00:00:00 2001
+From f19c926a66e8c360a660148f1b95efd149570c4b Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sun, 29 Nov 2020 21:01:24 -0600
-Subject: [PATCH 5/8] tcl/board: Add J7200 EVM basic support
+Subject: [PATCH 5/6] tcl/board: Add J7200 EVM basic support
 
 Add basic connection details with J7200 EVM
 
@@ -14,15 +14,15 @@ Signed-off-by: Nishanth Menon <nm@ti.com>
 
 diff --git a/tcl/board/j7200evm.cfg b/tcl/board/j7200evm.cfg
 new file mode 100644
-index 000000000000..257d697a3481
+index 000000000000..673c01d2e91a
 --- /dev/null
 +++ b/tcl/board/j7200evm.cfg
 @@ -0,0 +1,22 @@
 +#
-+# Texas Instruments J721E EVM
++# Texas Instruments J7200 EVM
 +#
 +
-+# J721E EVM has an xds110 onboard.
++# J7200 EVM has an xds110 onboard.
 +source [find interface/xds110.cfg]
 +
 +transport select jtag
@@ -39,7 +39,7 @@ index 000000000000..257d697a3481
 +
 +source [find target/ti-k3.cfg]
 +
-+adapter_khz 2500
++adapter speed 2500
 -- 
 2.29.2
 

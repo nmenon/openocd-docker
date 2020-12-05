@@ -1,7 +1,7 @@
-From a2eae8c6162ff71c1ee68dfd8338078f8ce00798 Mon Sep 17 00:00:00 2001
+From 2eee9fc7f39a28d7c87d6e3b0fd433d4df2639ef Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sat, 5 Dec 2020 09:17:30 -0600
-Subject: [PATCH 1/8] tcl: discover
+Subject: [PATCH 1/6] tcl: discover
 
 Add a simple discovery tcl
 

@@ -1,7 +1,7 @@
-From 1242bf979241640a9aacfde5cb7d4f82aa4d41fe Mon Sep 17 00:00:00 2001
+From fe2b3e8802ddb847f54d2cc8db0860adadd783fc Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Fri, 8 Jun 2018 16:48:27 -0500
-Subject: [PATCH 2/8] tcl/target: Add K3 basic support
+Subject: [PATCH 2/6] tcl/target: Add K3 basic support
 
 Add basic connection details for AM654 and J721E SoCs from TI.
 
@@ -26,7 +26,7 @@ Signed-off-by: Nishanth Menon <nm@ti.com>
 
 diff --git a/tcl/target/ti-k3.cfg b/tcl/target/ti-k3.cfg
 new file mode 100644
-index 000000000000..08e2f5e737da
+index 000000000000..b0ec8d91a738
 --- /dev/null
 +++ b/tcl/target/ti-k3.cfg
 @@ -0,0 +1,318 @@
@@ -173,7 +173,7 @@ index 000000000000..08e2f5e737da
 +set CM3_TPIUBASE	{0x20004000}
 +
 +# M3 is always present
-+cti create $_CTINAME.m3 -dap $_CHIPNAME.dap -ap-num 7 -ctibase [lindex $CM3_CTIBASE 0]
++cti create $_CTINAME.m3 -dap $_CHIPNAME.dap -ap-num 7 -baseaddr [lindex $CM3_CTIBASE 0]
 +set _command "target create $_TARGETNAME.m3 cortex_m -dap $_CHIPNAME.dap -ap-num 7"
 +set _command "$_command -defer-examine"
 +eval $_command
@@ -212,7 +212,7 @@ index 000000000000..08e2f5e737da
 +for { set _core 0 } { $_core < $_armv8_cores } { incr _core } {
 +
 +	cti create $_CTINAME.$_armv8_cpu_name.$_core -dap $_CHIPNAME.dap -ap-num 1 \
-+		-ctibase [lindex $ARMV8_CTIBASE $_core]
++		-baseaddr [lindex $ARMV8_CTIBASE $_core]
 +
 +	set _command "target create $_TARGETNAME.$_armv8_cpu_name.$_core aarch64 -dap $_CHIPNAME.dap \
 +		-dbgbase [lindex $ARMV8_DBGBASE $_core] -cti $_CTINAME.$_armv8_cpu_name.$_core"
@@ -275,7 +275,7 @@ index 000000000000..08e2f5e737da
 +
 +for { set _core 0 } { $_core < $_r5_cores } { incr _core } {
 +	cti create $_CTINAME.r5.$_core -dap $_CHIPNAME.dap -ap-num 1 \
-+		-ctibase [lindex $R5_CTIBASE $_core]
++		-baseaddr [lindex $R5_CTIBASE $_core]
 +	set _command "target create $_TARGETNAME.r5.$_core cortex_r4 -dap $_CHIPNAME.dap \
 +		-dbgbase [lindex $R5_DBGBASE $_core] -ap-num 1"
 +	# inactive core examination will fail - wait till startup of additional core
@@ -329,7 +329,7 @@ index 000000000000..08e2f5e737da
 +	set _mcu_m4_cores 0
 +}
 +if { $_mcu_m4_cores != 0 } {
-+	cti create $_CTINAME.m4 -dap $_CHIPNAME.dap -ap-num 8 -ctibase [lindex $CM4_CTIBASE 0]
++	cti create $_CTINAME.m4 -dap $_CHIPNAME.dap -ap-num 8 -baseaddr [lindex $CM4_CTIBASE 0]
 +	set _command "target create $_TARGETNAME.m4 cortex_m -dap $_CHIPNAME.dap -ap-num 8"
 +	set _command "$_command -defer-examine"
 +	eval $_command

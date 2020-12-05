@@ -1,7 +1,7 @@
-From 5acc143db7463f9f0afe39d714f2002ae447f089 Mon Sep 17 00:00:00 2001
+From a0b54939172a98f77cfd51f9a8a22b0558698d1b Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sat, 11 May 2019 03:15:39 -0500
-Subject: [PATCH 4/8] tcl/board: Add J721E EVM basic support
+Subject: [PATCH 4/6] tcl/board: Add J721E EVM basic support
 
 Add basic connection details with J721E EVM
 
