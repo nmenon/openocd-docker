@@ -5,34 +5,18 @@ IMG_NAME="${IMG_NAME:-nishanthmenon/openocd}"
 EVM=am654evm
 EVM_GUESS_REGEX="^32"
 
-# TBD: If we are using from github -> I need to figure out how to get that working..
-
-# If we are building locally
-# IMG_NAME=arm-kernel-dev
-
 # Check if docker exists
 docker=`which docker`
 if [ -z "$docker" ]; then
-	echo "Please install Docker and Image arm-kernel-dev from:" `dirname $0`
+	echo "Please install Docker and Image nishanthmenon/openocd from:" `dirname $0`
 	exit 1
 fi
-dimg=`docker image ls | grep arm-kernel-dev`
-if [ -z "$dimg" ]; then
-	echo "Please install Docker Image arm-kernel-dev from: cd" `dirname $0` ";make"
-	exit 1
-fi
+
 # If we are working off docker image from docker hub, make sure
 # we have the latest.
 if [ "$IMG_NAME" = "nishanthmenon/openocd" ]; then
 	docker pull $IMG_NAME
 fi
-PORTS="6666 4444 3333 3334 3335 3336 3337 3338 3339"
-
-P=""
-for PORT in $PORTS
-do
-	P="$P -p $PORT:$PORT"
-done
 
 XDS110_VID_PID="0451:bef3"
 # Find the serial number of the xds110 connected to j7200
