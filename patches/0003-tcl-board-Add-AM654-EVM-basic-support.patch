@@ -1,0 +1,45 @@
+From 6ec0b63c62de705ee7551401b5467656ecc79f3e Mon Sep 17 00:00:00 2001
+From: Nishanth Menon <nm@ti.com>
+Date: Fri, 8 Jun 2018 16:48:27 -0500
+Subject: [PATCH 3/8] tcl/board: Add AM654 EVM basic support
+
+Add basic connection details with AM654 evm
+
+Change-Id: Iea2240860e50ae42cf6f1617a10e24f63c6dd988
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ tcl/board/am654evm.cfg | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 tcl/board/am654evm.cfg
+
+diff --git a/tcl/board/am654evm.cfg b/tcl/board/am654evm.cfg
+new file mode 100644
+index 000000000000..b19211c183ae
+--- /dev/null
++++ b/tcl/board/am654evm.cfg
+@@ -0,0 +1,22 @@
++#
++# Texas Instruments AM654 EVM/IDK Base Board
++#
++
++# AM654 EVM has an xds110 onboard.
++source [find interface/xds110.cfg]
++
++transport select jtag
++
++# default JTAG configuration has only SRST and no TRST
++reset_config srst_only srst_push_pull
++
++# delay after SRST goes inactive
++adapter srst delay 70
++
++if { ![info exists SOC] } {
++	set SOC am654
++}
++
++source [find target/ti-k3.cfg]
++
++adapter speed 2500
+-- 
+2.29.2
+

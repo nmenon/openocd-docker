@@ -1,0 +1,24 @@
+From 4e01e7268d7581154af58001de2c8b12a49d1c3c Mon Sep 17 00:00:00 2001
+From: Nishanth Menon <nm@ti.com>
+Date: Sat, 5 Dec 2020 09:16:50 -0600
+Subject: [PATCH 8/8] tcl: board: fixup
+
+Change-Id: If45acce8a6c1dbf85b287d6dfcba2b060320ca3f
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ tcl/board/am642evm.cfg | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tcl/board/am642evm.cfg b/tcl/board/am642evm.cfg
+index e00339084bfe..39bcecab1e4e 100644
+--- a/tcl/board/am642evm.cfg
++++ b/tcl/board/am642evm.cfg
+@@ -19,4 +19,4 @@ if { ![info exists SOC] } {
+ 
+ source [find target/ti-k3.cfg]
+ 
+-adapter_khz 2500
++adapter speed 250
+-- 
+2.29.2
+
