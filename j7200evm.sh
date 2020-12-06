@@ -49,4 +49,4 @@ if [ $num_xds110 -gt 1 -a -n "$CMD_LINE_SERIAL" ]; then
 	iserial=$CMD_LINE_SERIAL
 fi
 echo  "Connecting to $EVM xds110 serial number '$iserial'"
-docker run -it --rm --network host --privileged -v /dev/bus/usb:/dev/bus/usb -v `pwd`:/data  "$IMG_NAME" -f board/$EVM.cfg -c 'xds110 serial "'$iserial'"'
+docker run -it --rm --network host --privileged -v /dev/bus/usb:/dev/bus/usb -v `pwd`:/data  "$IMG_NAME" -f board/ti_$EVM.cfg -c 'cmsis_dap_serial "'$iserial'"'

@@ -1,0 +1,49 @@
+From 52bf4319676aa8ad13272fff36c97037c2f486ee Mon Sep 17 00:00:00 2001
+From: Nishanth Menon <nm@ti.com>
+Date: Mon, 30 Nov 2020 08:18:32 -0600
+Subject: [PATCH 5/5] tcl/board: Add AM642 EVM basic support
+
+Add basic connection details with AM642 EVM
+
+Change-Id: I95dcf6afadb61bfd8456b79274eae863b834167d
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ tcl/board/ti_am642evm.cfg | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 tcl/board/ti_am642evm.cfg
+
+diff --git a/tcl/board/ti_am642evm.cfg b/tcl/board/ti_am642evm.cfg
+new file mode 100644
+index 000000000000..db0f21a6cb90
+--- /dev/null
++++ b/tcl/board/ti_am642evm.cfg
+@@ -0,0 +1,26 @@
++#
++# Texas Instruments AM642 EVM
++#
++
++# AM642 EVM has an xds110 onboard.
++# Works with CMSIS-DAPv2
++source [find interface/cmsis-dap.cfg]
++
++# With XDS110 VID/PID
++cmsis_dap_vid_pid 0x0451 0xbef3
++
++transport select jtag
++
++# default JTAG configuration has only SRST and no TRST
++reset_config srst_only srst_push_pull
++
++# delay after SRST goes inactive
++adapter srst delay 20
++
++if { ![info exists SOC] } {
++	set SOC am642
++}
++
++source [find target/ti-k3.cfg]
++
++adapter speed 250
+-- 
+2.29.2
+
