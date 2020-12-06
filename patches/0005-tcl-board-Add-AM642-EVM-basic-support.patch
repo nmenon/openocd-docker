@@ -1,4 +1,4 @@
-From 52bf4319676aa8ad13272fff36c97037c2f486ee Mon Sep 17 00:00:00 2001
+From 6f238f82856741419ad7301c671764adbc738f59 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Mon, 30 Nov 2020 08:18:32 -0600
 Subject: [PATCH 5/5] tcl/board: Add AM642 EVM basic support
@@ -8,16 +8,18 @@ Add basic connection details with AM642 EVM
 Change-Id: I95dcf6afadb61bfd8456b79274eae863b834167d
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/board/ti_am642evm.cfg | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ tcl/board/ti_am642evm.cfg | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
  create mode 100644 tcl/board/ti_am642evm.cfg
 
 diff --git a/tcl/board/ti_am642evm.cfg b/tcl/board/ti_am642evm.cfg
 new file mode 100644
-index 000000000000..db0f21a6cb90
+index 000000000000..5d19b0b3db71
 --- /dev/null
 +++ b/tcl/board/ti_am642evm.cfg
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,28 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
++# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
 +#
 +# Texas Instruments AM642 EVM
 +#

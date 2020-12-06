@@ -1,4 +1,4 @@
-From e3dca30aebc8aa2ed470d557eb54b5a160181cb7 Mon Sep 17 00:00:00 2001
+From 831c39bd795a9bc44321bd250c909641a6e5295c Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sat, 11 May 2019 03:15:39 -0500
 Subject: [PATCH 3/5] tcl/board: Add J721E EVM basic support
@@ -8,16 +8,18 @@ Add basic connection details with J721E EVM
 Change-Id: I0c2d25252432914d8e371e81761a59c05924bd8e
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/board/ti_j721evm.cfg | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ tcl/board/ti_j721evm.cfg | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
  create mode 100644 tcl/board/ti_j721evm.cfg
 
 diff --git a/tcl/board/ti_j721evm.cfg b/tcl/board/ti_j721evm.cfg
 new file mode 100644
-index 000000000000..fff54836c768
+index 000000000000..7f68a5e8c89c
 --- /dev/null
 +++ b/tcl/board/ti_j721evm.cfg
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,28 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
++# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
 +#
 +# Texas Instruments J721E EVM
 +#

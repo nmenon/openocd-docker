@@ -1,4 +1,4 @@
-From 77d0b3a4b421ac5772411e22fde531608930d7f0 Mon Sep 17 00:00:00 2001
+From 121183ea9ebce7e9086162ea67167ac36ca9101b Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sun, 29 Nov 2020 21:01:24 -0600
 Subject: [PATCH 4/5] tcl/board: Add J7200 EVM basic support
@@ -8,16 +8,18 @@ Add basic connection details with J7200 EVM
 Change-Id: Ia8fa5033a693ac09849d33693c81b8cb206f17c1
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/board/ti_j7200evm.cfg | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ tcl/board/ti_j7200evm.cfg | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
  create mode 100644 tcl/board/ti_j7200evm.cfg
 
 diff --git a/tcl/board/ti_j7200evm.cfg b/tcl/board/ti_j7200evm.cfg
 new file mode 100644
-index 000000000000..b022ba1203c0
+index 000000000000..6661c9a313e7
 --- /dev/null
 +++ b/tcl/board/ti_j7200evm.cfg
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,28 @@
++# SPDX-License-Identifier: GPL-2.0-or-later
++# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
 +#
 +# Texas Instruments J7200 EVM
 +#
