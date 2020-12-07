@@ -1,4 +1,4 @@
-From ed39080c9eb9db70bcbf97f477620b6c7716c1e1 Mon Sep 17 00:00:00 2001
+From c381ed9a83a7c7988dd507426dfc00061f3d7011 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Fri, 8 Jun 2018 16:48:27 -0500
 Subject: [PATCH 1/5] tcl/target: Add K3 basic support
@@ -20,16 +20,16 @@ for further details: https://www.ti.com/lit/pdf/spruim2
 Change-Id: Ie5108c6ad6f1304a6bf5b9f81aa9ebd33b8a559d
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/target/ti-k3.cfg | 280 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 280 insertions(+)
+ tcl/target/ti-k3.cfg | 256 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 256 insertions(+)
  create mode 100644 tcl/target/ti-k3.cfg
 
 diff --git a/tcl/target/ti-k3.cfg b/tcl/target/ti-k3.cfg
 new file mode 100644
-index 000000000000..c281eb55d3ab
+index 000000000000..d213fde66d6c
 --- /dev/null
 +++ b/tcl/target/ti-k3.cfg
-@@ -0,0 +1,280 @@
+@@ -0,0 +1,256 @@
 +# SPDX-License-Identifier: GPL-2.0-or-later
 +# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
 +#
@@ -185,16 +185,12 @@ index 000000000000..c281eb55d3ab
 +$_TARGETNAME.m3 configure -event reset-assert { }
 +
 +proc m3_up { args } {
-+	global _TARGETNAME
-+	global _CHIPNAME
-+	global _m3_ap_unlock_offsets
-+
 +	# To access M3, we need to enable the JTAG access for the same.
 +	# Ensure Power-AP unlocked
-+	$_CHIPNAME.dap apreg 3 [lindex $_m3_ap_unlock_offsets 0] 0x00190000
-+	$_CHIPNAME.dap apreg 3 [lindex $_m3_ap_unlock_offsets 1] 0x00102098
++	$::_CHIPNAME.dap apreg 3 [lindex $::_m3_ap_unlock_offsets 0] 0x00190000
++	$::_CHIPNAME.dap apreg 3 [lindex $::_m3_ap_unlock_offsets 1] 0x00102098
 +
-+	$_TARGETNAME.m3 arp_examine
++	$::_TARGETNAME.m3 arp_examine
 +}
 +
 +set _v8_smp_targets ""
@@ -207,11 +203,7 @@ index 000000000000..c281eb55d3ab
 +	target create $_TARGETNAME.$_armv8_cpu_name.$_core aarch64 -dap $_CHIPNAME.dap \
 +		-dbgbase [lindex $ARMV8_DBGBASE $_core] -cti $_CTINAME.$_armv8_cpu_name.$_core -defer-examine
 +
-+	if { $_core != 0 } {
-+		set _v8_smp_targets "$_v8_smp_targets $_TARGETNAME.$_armv8_cpu_name.$_core"
-+	} else {
-+		set _v8_smp_targets "$_TARGETNAME.$_armv8_cpu_name.$_core"
-+	}
++	set _v8_smp_targets "$_v8_smp_targets $_TARGETNAME.$_armv8_cpu_name.$_core"
 +}
 +
 +# Setup ARMV8 proc commands based on CPU to prevent people confusing SoCs
@@ -221,30 +213,24 @@ index 000000000000..c281eb55d3ab
 +
 +if { $_v8_smp_debug == 0 } {
 +	proc $_armv8_up_cmd { args } {
-+		global _TARGETNAME
-+		global _armv8_cpu_name
 +		foreach { _core } [set args] {
-+			$_TARGETNAME.$_armv8_cpu_name.$_core arp_examine
-+			$_TARGETNAME.$_armv8_cpu_name.$_core aarch64 dbginit
++			$::_TARGETNAME.$::_armv8_cpu_name.$_core arp_examine
++			$::_TARGETNAME.$::_armv8_cpu_name.$_core aarch64 dbginit
 +		}
 +	}
 +} else {
 +	proc $_armv8_smp_cmd { args } {
-+		global _TARGETNAME
-+		global _armv8_cores
-+		global _armv8_cpu_name
-+		global _v8_smp_targets
-+		for { set _core 0 } { $_core < $_armv8_cores } { incr _core } {
-+			$_TARGETNAME.$_armv8_cpu_name.$_core arp_examine
-+			$_TARGETNAME.$_armv8_cpu_name.$_core aarch64 dbginit
-+			$_TARGETNAME.$_armv8_cpu_name.$_core aarch64 smp on
++		for { set _core 0 } { $_core < $::_armv8_cores } { incr _core } {
++			$::_TARGETNAME.$::_armv8_cpu_name.$_core arp_examine
++			$::_TARGETNAME.$::_armv8_cpu_name.$_core aarch64 dbginit
++			$::_TARGETNAME.$::_armv8_cpu_name.$_core aarch64 smp on
 +		}
 +		# Set Default target are core 0
-+		targets $_TARGETNAME.$_armv8_cpu_name.0
++		targets $::_TARGETNAME.$::_armv8_cpu_name.0
 +	}
 +
 +	# Declare SMP
-+	target smp $_v8_smp_targets
++	target smp $:::_v8_smp_targets
 +}
 +
 +for { set _core 0 } { $_core < $_r5_cores } { incr _core } {
@@ -258,36 +244,30 @@ index 000000000000..c281eb55d3ab
 +
 +if { $_mcu_r5_cores != 0 } {
 +	proc mcu_r5_up { args } {
-+		global _TARGETNAME
-+		global _mcu_base_core_id
 +		foreach { _core } [set args] {
-+			set _core [expr {$_core + $_mcu_base_core_id}]
-+			$_TARGETNAME.r5.$_core arp_examine
-+			$_TARGETNAME.r5.$_core cortex_r4 dbginit
++			set _core [expr {$_core + $::_mcu_base_core_id}]
++			$::_TARGETNAME.r5.$_core arp_examine
++			$::_TARGETNAME.r5.$_core cortex_r4 dbginit
 +		}
 +	}
 +}
 +
 +if { $_main0_r5_cores != 0 } {
 +	proc main0_r5_up { args } {
-+		global _TARGETNAME
-+		global _main0_base_core_id
 +		foreach { _core } [set args] {
-+			set _core [expr {$_core + $_main0_base_core_id}]
-+			$_TARGETNAME.r5.$_core arp_examine
-+			$_TARGETNAME.r5.$_core cortex_r4 dbginit
++			set _core [expr {$_core + $::_main0_base_core_id}]
++			$::_TARGETNAME.r5.$_core arp_examine
++			$::_TARGETNAME.r5.$_core cortex_r4 dbginit
 +		}
 +	}
 +}
 +
 +if { $_main1_r5_cores != 0 } {
 +	proc main1_r5_up { args } {
-+		global _TARGETNAME
-+		global _main1_base_core_id
 +		foreach { _core } [set args] {
-+			set _core [expr {$_core + $_main1_base_core_id}]
-+			$_TARGETNAME.r5.$_core arp_examine
-+			$_TARGETNAME.r5.$_core cortex_r4 dbginit
++			set _core [expr {$_core + $::_main1_base_core_id}]
++			$::_TARGETNAME.r5.$_core arp_examine
++			$::_TARGETNAME.r5.$_core cortex_r4 dbginit
 +		}
 +	}
 +}
@@ -298,16 +278,12 @@ index 000000000000..c281eb55d3ab
 +	$_TARGETNAME.m4 configure -event reset-assert { }
 +
 +	proc m4_up { args } {
-+		global _TARGETNAME
-+		global _CHIPNAME
-+		global _m4_ap_unlock_offsets
-+
 +		# To access M4, we need to enable the JTAG access for the same.
 +		# Ensure Power-AP unlocked
-+		$_CHIPNAME.dap apreg 3 [lindex $_m4_ap_unlock_offsets 0] 0x00190000
-+		$_CHIPNAME.dap apreg 3 [lindex $_m4_ap_unlock_offsets 1] 0x00102098
++		$::_CHIPNAME.dap apreg 3 [lindex $::_m4_ap_unlock_offsets 0] 0x00190000
++		$::_CHIPNAME.dap apreg 3 [lindex $::_m4_ap_unlock_offsets 1] 0x00102098
 +
-+		$_TARGETNAME.m4 arp_examine
++		$::_TARGETNAME.m4 arp_examine
 +	}
 +}
 -- 

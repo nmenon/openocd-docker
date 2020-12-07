@@ -1,4 +1,4 @@
-From 67ffd75b0174dc6be661194c753bdd7957bdfe66 Mon Sep 17 00:00:00 2001
+From 0f0f333925be461098a49e5c9123b544bb7f350d Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Fri, 8 Jun 2018 16:48:27 -0500
 Subject: [PATCH 2/5] tcl/board: Add AM654 EVM basic support

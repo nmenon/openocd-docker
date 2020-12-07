@@ -1,4 +1,4 @@
-From 6f238f82856741419ad7301c671764adbc738f59 Mon Sep 17 00:00:00 2001
+From 40a3e5ddd1e1813bbe278f3a6e4c78334c554fa6 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Mon, 30 Nov 2020 08:18:32 -0600
 Subject: [PATCH 5/5] tcl/board: Add AM642 EVM basic support

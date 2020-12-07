@@ -1,4 +1,4 @@
-From 121183ea9ebce7e9086162ea67167ac36ca9101b Mon Sep 17 00:00:00 2001
+From 076123625aa3dfb69b9218a10871cbbdde17106a Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sun, 29 Nov 2020 21:01:24 -0600
 Subject: [PATCH 4/5] tcl/board: Add J7200 EVM basic support
