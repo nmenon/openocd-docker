@@ -1,4 +1,4 @@
-From 1f514196c6f971d8501738309d244fd9fe2447c0 Mon Sep 17 00:00:00 2001
+From 1ab4a3560ed524e7aacc340317e3e15c4e62914c Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sat, 11 May 2019 03:15:39 -0500
 Subject: [PATCH 3/5] tcl/board: Add J721E EVM basic support
@@ -8,16 +8,16 @@ Add basic connection details with J721E EVM
 Change-Id: I0c2d25252432914d8e371e81761a59c05924bd8e
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/board/ti_j721evm.cfg | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ tcl/board/ti_j721evm.cfg | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
  create mode 100644 tcl/board/ti_j721evm.cfg
 
 diff --git a/tcl/board/ti_j721evm.cfg b/tcl/board/ti_j721evm.cfg
 new file mode 100644
-index 000000000000..7f68a5e8c89c
+index 000000000000..1f76132319bc
 --- /dev/null
 +++ b/tcl/board/ti_j721evm.cfg
-@@ -0,0 +1,28 @@
+@@ -0,0 +1,24 @@
 +# SPDX-License-Identifier: GPL-2.0-or-later
 +# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
 +#
@@ -25,11 +25,7 @@ index 000000000000..7f68a5e8c89c
 +#
 +
 +# J721E EVM has an xds110 onboard.
-+# Works with CMSIS-DAPv2
-+source [find interface/cmsis-dap.cfg]
-+
-+# With XDS110 VID/PID
-+cmsis_dap_vid_pid 0x0451 0xbef3
++source [find interface/xds110.cfg]
 +
 +transport select jtag
 +

@@ -1,4 +1,4 @@
-From 40a3e5ddd1e1813bbe278f3a6e4c78334c554fa6 Mon Sep 17 00:00:00 2001
+From ccc5a1627d77bcc9152f4ebb4c6a9cd4455234d8 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Mon, 30 Nov 2020 08:18:32 -0600
 Subject: [PATCH 5/5] tcl/board: Add AM642 EVM basic support
@@ -8,16 +8,16 @@ Add basic connection details with AM642 EVM
 Change-Id: I95dcf6afadb61bfd8456b79274eae863b834167d
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/board/ti_am642evm.cfg | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ tcl/board/ti_am642evm.cfg | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
  create mode 100644 tcl/board/ti_am642evm.cfg
 
 diff --git a/tcl/board/ti_am642evm.cfg b/tcl/board/ti_am642evm.cfg
 new file mode 100644
-index 000000000000..5d19b0b3db71
+index 000000000000..d39a1f9340b9
 --- /dev/null
 +++ b/tcl/board/ti_am642evm.cfg
-@@ -0,0 +1,28 @@
+@@ -0,0 +1,24 @@
 +# SPDX-License-Identifier: GPL-2.0-or-later
 +# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
 +#
@@ -25,11 +25,7 @@ index 000000000000..5d19b0b3db71
 +#
 +
 +# AM642 EVM has an xds110 onboard.
-+# Works with CMSIS-DAPv2
-+source [find interface/cmsis-dap.cfg]
-+
-+# With XDS110 VID/PID
-+cmsis_dap_vid_pid 0x0451 0xbef3
++source [find interface/xds110.cfg]
 +
 +transport select jtag
 +
