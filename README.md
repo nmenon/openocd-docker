@@ -27,6 +27,11 @@ In addition for a new SoC, you could also use:
 Overall, openOCD usage looks like this:
 ![Simple view of openOCD](img/openocd.png)
 
+OpenOCD Version
+===============
+
+v0.11.0-rc1-10-gc69b4deae36a
+
 Connecting Hardware
 ===================
 
