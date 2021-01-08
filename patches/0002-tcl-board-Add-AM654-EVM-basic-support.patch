@@ -1,4 +1,4 @@
-From eb4f22ce5b15ee9f493e7da0b3f3d3ece1fc88e3 Mon Sep 17 00:00:00 2001
+From e2a0eeb37067da980c06b328b0b00b205e687301 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Fri, 8 Jun 2018 16:48:27 -0500
 Subject: [PATCH 2/5] tcl/board: Add AM654 EVM basic support
@@ -14,7 +14,7 @@ Signed-off-by: Nishanth Menon <nm@ti.com>
 
 diff --git a/tcl/board/ti_am654evm.cfg b/tcl/board/ti_am654evm.cfg
 new file mode 100644
-index 000000000000..67b70aa4829d
+index 000000000000..b4235faf67c3
 --- /dev/null
 +++ b/tcl/board/ti_am654evm.cfg
 @@ -0,0 +1,24 @@
@@ -39,7 +39,7 @@ index 000000000000..67b70aa4829d
 +	set SOC am654
 +}
 +
-+source [find target/ti-k3.cfg]
++source [find target/ti_k3.cfg]
 +
 +adapter speed 2500
 -- 

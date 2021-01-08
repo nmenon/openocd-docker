@@ -1,4 +1,4 @@
-From c381ed9a83a7c7988dd507426dfc00061f3d7011 Mon Sep 17 00:00:00 2001
+From 37f13179e318ec1cbb0c89de2a45a823db0d5950 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Fri, 8 Jun 2018 16:48:27 -0500
 Subject: [PATCH 1/5] tcl/target: Add K3 basic support
@@ -20,15 +20,15 @@ for further details: https://www.ti.com/lit/pdf/spruim2
 Change-Id: Ie5108c6ad6f1304a6bf5b9f81aa9ebd33b8a559d
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- tcl/target/ti-k3.cfg | 256 +++++++++++++++++++++++++++++++++++++++++++
+ tcl/target/ti_k3.cfg | 256 +++++++++++++++++++++++++++++++++++++++++++
  1 file changed, 256 insertions(+)
- create mode 100644 tcl/target/ti-k3.cfg
+ create mode 100644 tcl/target/ti_k3.cfg
 
-diff --git a/tcl/target/ti-k3.cfg b/tcl/target/ti-k3.cfg
+diff --git a/tcl/target/ti_k3.cfg b/tcl/target/ti_k3.cfg
 new file mode 100644
-index 000000000000..d213fde66d6c
+index 000000000000..a7048f13e469
 --- /dev/null
-+++ b/tcl/target/ti-k3.cfg
++++ b/tcl/target/ti_k3.cfg
 @@ -0,0 +1,256 @@
 +# SPDX-License-Identifier: GPL-2.0-or-later
 +# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
@@ -172,7 +172,7 @@ index 000000000000..d213fde66d6c
 +	}
 +}
 +
-+jtag newtap $_CHIPNAME cpu -irlen 4 -expected-id $_K3_DAP_TAPID
++jtag newtap $_CHIPNAME cpu -irlen 4 -expected-id $_K3_DAP_TAPID -ignore-version
 +dap create $_CHIPNAME.dap -chain-position $_CHIPNAME.cpu
 +
 +set _TARGETNAME $_CHIPNAME.cpu

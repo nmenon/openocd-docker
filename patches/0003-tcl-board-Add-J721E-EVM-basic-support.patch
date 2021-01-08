@@ -1,4 +1,4 @@
-From 1ab4a3560ed524e7aacc340317e3e15c4e62914c Mon Sep 17 00:00:00 2001
+From 0f9e6a0f49a670505559a5f85590c685458cf296 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sat, 11 May 2019 03:15:39 -0500
 Subject: [PATCH 3/5] tcl/board: Add J721E EVM basic support
@@ -14,7 +14,7 @@ Signed-off-by: Nishanth Menon <nm@ti.com>
 
 diff --git a/tcl/board/ti_j721evm.cfg b/tcl/board/ti_j721evm.cfg
 new file mode 100644
-index 000000000000..1f76132319bc
+index 000000000000..8422471cce53
 --- /dev/null
 +++ b/tcl/board/ti_j721evm.cfg
 @@ -0,0 +1,24 @@
@@ -39,7 +39,7 @@ index 000000000000..1f76132319bc
 +	set SOC j721e
 +}
 +
-+source [find target/ti-k3.cfg]
++source [find target/ti_k3.cfg]
 +
 +adapter speed 2500
 -- 

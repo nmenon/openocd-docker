@@ -1,4 +1,4 @@
-From 2c68e265fdd07de2f3a443ec704b671b57835d60 Mon Sep 17 00:00:00 2001
+From b3639b1ae3bde1c8909a726860c597c524584179 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Sun, 29 Nov 2020 21:01:24 -0600
 Subject: [PATCH 4/5] tcl/board: Add J7200 EVM basic support
@@ -14,7 +14,7 @@ Signed-off-by: Nishanth Menon <nm@ti.com>
 
 diff --git a/tcl/board/ti_j7200evm.cfg b/tcl/board/ti_j7200evm.cfg
 new file mode 100644
-index 000000000000..c2260bdbe7a5
+index 000000000000..a8bc23c7decd
 --- /dev/null
 +++ b/tcl/board/ti_j7200evm.cfg
 @@ -0,0 +1,24 @@
@@ -39,7 +39,7 @@ index 000000000000..c2260bdbe7a5
 +	set SOC j7200
 +}
 +
-+source [find target/ti-k3.cfg]
++source [find target/ti_k3.cfg]
 +
 +adapter speed 2500
 -- 

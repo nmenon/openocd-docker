@@ -1,4 +1,4 @@
-From ccc5a1627d77bcc9152f4ebb4c6a9cd4455234d8 Mon Sep 17 00:00:00 2001
+From 06f8c4de72c25921d2592c5eb99a725d8a8e34c6 Mon Sep 17 00:00:00 2001
 From: Nishanth Menon <nm@ti.com>
 Date: Mon, 30 Nov 2020 08:18:32 -0600
 Subject: [PATCH 5/5] tcl/board: Add AM642 EVM basic support
@@ -14,7 +14,7 @@ Signed-off-by: Nishanth Menon <nm@ti.com>
 
 diff --git a/tcl/board/ti_am642evm.cfg b/tcl/board/ti_am642evm.cfg
 new file mode 100644
-index 000000000000..d39a1f9340b9
+index 000000000000..1acaa7737ba1
 --- /dev/null
 +++ b/tcl/board/ti_am642evm.cfg
 @@ -0,0 +1,24 @@
@@ -39,7 +39,7 @@ index 000000000000..d39a1f9340b9
 +	set SOC am642
 +}
 +
-+source [find target/ti-k3.cfg]
++source [find target/ti_k3.cfg]
 +
 +adapter speed 250
 -- 
