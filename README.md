@@ -30,7 +30,7 @@ Overall, openOCD usage looks like this:
 OpenOCD Version
 ===============
 
-v0.11.0-rc2-6-gf68ade529a9e
+v0.11.0-rc2-11-g5f3bc3b279c6
 
 Connecting Hardware
 ===================
