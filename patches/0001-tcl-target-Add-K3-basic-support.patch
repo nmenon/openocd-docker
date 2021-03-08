@@ -31,7 +31,7 @@ index 000000000000..a7048f13e469
 +++ b/tcl/target/ti_k3.cfg
 @@ -0,0 +1,256 @@
 +# SPDX-License-Identifier: GPL-2.0-or-later
-+# Copyright (C) 2019-2020 Texas Instruments Incorporated - http://www.ti.com/
++# Copyright (C) 2019-2021 Texas Instruments Incorporated - http://www.ti.com/
 +#
 +# Texas Instruments K3 devices:
 +# * AM654x: https://www.ti.com/lit/pdf/spruid7
